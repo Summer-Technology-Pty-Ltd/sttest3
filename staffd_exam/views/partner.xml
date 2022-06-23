@@ -1,0 +1,32 @@
+<odoo>
+    <data>
+        <record model="ir.ui.view" id="sales_purchase_form_view_inherited">
+            <field name="name">partner.form.view.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='industry_id']" position="after">
+                    <field name="credit"/>
+                    <field name="credit_limit"/>
+                    <field name="over_credit"/>
+                    <field name="action"/>
+                </xpath>
+            </field>
+        </record>
+
+        <record id="sales_purchase_tree_view_inherited" model="ir.ui.view">
+            <field name="name">partner.tree.view.inherited</field>
+            <field name="model">res.partner</field>
+            <field name="type">tree</field>
+            <field name="inherit_id" ref="base.view_partner_tree"/>
+            <field name="arch" type="xml">
+                <xpath expr="//tree" position="attributes">
+                    <attribute name="decoration-danger">over_credit==True</attribute>
+                </xpath>
+                <xpath expr="/tree/field[@name='active']" position="after">
+                    <field name="over_credit"/>
+                </xpath>
+            </field>
+        </record>
+    </data>
+</odoo>
